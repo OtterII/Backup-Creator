@@ -24,7 +24,7 @@ while True:
         time.sleep(1800)
         t += 1
         txt = open('time.txt', 'w+')
-        txt.write(str(t))S
+        txt.write(str(t))
         txt.close()
         print('Waited another half an hour. There are now ' + str(24-t/2) + ' hours left until the next backup will be taken.')
 
