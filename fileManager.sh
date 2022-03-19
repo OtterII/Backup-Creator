@@ -18,10 +18,7 @@ rm -R 'Backup/screenshots'
 echo 'Collected and zipped Minecraft worlds and screenshots'
 
 zip -r Backup.zip Backup
-date=$(date|tr : -|tr ' ' '--')
-echo $date
 rm -R Backup
-scp Backup.zip ubuntu@192.168.0.25:/home/ubuntu/Backups
+scp Backup.zip pi@ip.address:/path/to/backups/folder
 $(mv Backup.zip `$date`.zip)
-#rm Backup.zip
 #Rename file to date.
