@@ -19,6 +19,6 @@ echo 'Collected and zipped Minecraft worlds and screenshots'
 
 zip -r Backup.zip Backup
 rm -R Backup
-scp Backup.zip pi@ip.address:/path/to/backups/folder
-$(mv Backup.zip `date +"%I:%M.%p_%d_%B_%Y" `.zip) # data format modified (eg. 08:34.PM_19_March_2022)
-#Rename file to date. | DONE :) |
+date=`date +"%I:%M_%d_%B_%Y"`
+$(mv Backup.zip `$date `.zip)
+scp `$date `.zip pi@ip.address:/path/to/backups/folder
