@@ -1,3 +1,5 @@
+#! /bin/bash
+
 mkdir Backup
 
 cp -r '/home/$USER/Random Junk' Backup
@@ -17,8 +19,20 @@ rm -R 'Backup/saves'
 rm -R 'Backup/screenshots'
 echo 'Collected and zipped Minecraft worlds and screenshots'
 
+##### OLD CODE
+# zip -r Backup.zip Backup
+# rm -R Backup
+# date=`date +"%I:%M_%d_%B_%Y"`
+# $(mv Backup.zip `$date `.zip)
+# scp `$date `.zip pi@ip.address:/path/to/backups/folder
+#####
+
 zip -r Backup.zip Backup
 rm -R Backup
-date=`date +"%I:%M_%d_%B_%Y"`
-$(mv Backup.zip `$date `.zip)
-scp `$date `.zip pi@ip.address:/path/to/backups/folder
+dateStamp=$(date +"%I:%M.%p_%d_%B_%Y")
+sendFile="./${dateStamp}.zip"
+mv Backup.zip "${sendFile}"
+echo "datastamp added to file name"
+
+scp -i 'yourKEY.pem' "${sendFile}" pi@ip.address:/path/to/backups/folder
+echo -e "file has been sent over via ssh"
